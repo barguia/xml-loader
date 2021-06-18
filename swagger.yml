@@ -1,0 +1,144 @@
+openapi: 3.0.1
+info:
+  title: API XML files
+  description: API to show states of loaded XML files
+  version: 0.0.1
+  contact:
+    name: Eduardo Purificação
+    email: eduardo.barbelino@gmail.com
+servers:
+  - url: http://localhost/api/
+    description: Optional server description, e.g. Main (production) server
+paths:
+  /api/login:
+    post:
+      summary: Get token
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  properties:
+                      token:
+                        type: string
+
+
+        404:
+          description: Fail
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  type: object
+                  properties:
+                    message:
+                      items:
+                        type: string
+  /api/xml-file:
+    get:
+      summary: Get a loaded XML files
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  type: object
+                  properties:
+                    data:
+                      items:
+                        type: array
+                        properties:
+                          id:
+                            type: integer
+                          original_name:
+                            type: string
+                          ext:
+                            type: string
+                          success:
+                            type: integer
+                          created_at:
+                            type: string
+                          updated_at:
+                            type: string
+                          finalized_at:
+                            type: string
+                          data_file:
+                            type: object
+                          failures:
+                            type: array
+                          user:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              email:
+                                type: string
+                              created_at:
+                                type: string
+                              updated_at:
+                                type: string
+  /api/xml-file/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+
+    get:
+      summary: Get a loaded XML files
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  type: object
+                  properties:
+                    data:
+                      items:
+                        type: array
+                        properties:
+                          id:
+                            type: integer
+                          original_name:
+                            type: string
+                          ext:
+                            type: string
+                          success:
+                            type: integer
+                          created_at:
+                            type: string
+                          updated_at:
+                            type: string
+                          finalized_at:
+                            type: string
+                          data_file:
+                            type: object
+                          failures:
+                            type: array
+                          user:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              email:
+                                type: string
+                              created_at:
+                                type: string
+                              updated_at:
+                                type: string
+components:
+    securitySchemes:
+        auth:
+            type: http
+            scheme: bearer
