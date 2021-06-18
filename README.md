@@ -25,9 +25,8 @@ There is a shell script in the application container to run:
 * Start the queue and
 * Run the tests
 ```bash
-sh /vaw/www/hml/app.sh
+docker container exec -it name-or-id-container bash app.sh
 ```
-
 
 
 ### Routes
